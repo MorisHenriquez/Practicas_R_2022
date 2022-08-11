@@ -1,0 +1,680 @@
+---
+title: "Practica2_Semana1_2022"
+author: "Moris Henriquez"
+date: '2022-08-10'
+output: pdf_document
+lang: es-ES
+toc: TRUE
+
+---
+\pagebreak
+
+# 1. CREACIÓN Y MANEJO DE VECTORES DE DATOS.
+
+Este tipo de objetos se denominan estructuras atómicas ya que todos sus elementos son del mismo tipo o modo: character (carácter) o numeric (numérico) que puede ser integer (entero), double (real), complex (complejo), logical (lógico).
+
+## 1.1 VECTORES NUMÉRICOS
+
+### FORMA 1-Crear un vector numérico vacío y añadirle luego sus elementos. 
+
+Ejemplo 1: 
+```{r}
+v <- numeric(3)
+v
+```
+El vector tiene longitud 3 y sus componentes serán NA (Not Available/"Missing" Values) que es la forma como R maneja los datos omitidos o faltantes.
+
+Ejemplo 2:
+```{r}
+v[3]<-17
+v
+```
+Este codigo asigna el valor de 17 en la tercera posicion del vector v.
+
+### FORMA 2-Crear un vector numérico asignándole todos sus elementos o valores.
+
+Ejemplo 1: 
+```{r}
+x <- c(2, 4, 3.1, 8, 6)
+x
+```
+
+revise el modo con is.integer(x) y is.double(x)
+
+```{r}
+is.integer(x)
+is.double(x)
+```
+
+Encuentre la longitud con: length(x)
+
+```{r}
+length(x)
+```
+
+
+Ejemplo 2: Modifique el vector agregándole el valor 9 en la posición 3, use la siguiente la función de edición: x <- edit(x)
+```{r}
+x<-edit(x)
+x
+```
+
+### FORMA 3-Crear un vector numérico dando un rango de valores.
+
+Ejemplo 1: y = 1:4, Crea un vector de valores enteros en que su primer elemento es 1 su último es 4
+
+```{r}
+y=1:4
+y
+
+```
+
+Ejemplo 2: Modificación de los elementos de un vector: y[2] <- 5 (para modificar un elemento de un vector se escribe su nombre (del vector) y entre corchetes el índice del elemento que se quiera modificar).
+
+```{r}
+y[2]<-5
+y
+```
+
+Ejemplo 3: Crear un vector con elementos de otro; u <- 1:12; u1=u[2 * 1:5] (vector de tamaño 5 con elementos de las posiciones pares de u).
+
+```{r}
+u<- 1:12
+u
+
+u1=u[2*1:5]
+u1
+
+```
+
+###FORMA 4-Crear un vector numérico utilizando la función assign().
+
+Ejemplo 1: assign("z", c(x, 0, x)); z (crea un vector en dos copias de x con un cero entre ambas)
+
+```{r}
+assign("z", c(x,0,x))
+z
+```
+
+### FORMA 5-Crear un vector numérico generando una sucesión de valores.
+
+Ejemplo 1: s1 <- seq(2, 10); s1 (compárese a como fue generado el vector y y u)
+```{r}
+s1<-seq(2,10)
+s1
+```
+
+Ejemplo 2: s2 = seq(from=-1, to=5); s2 crea un vector cuyo elemento inicial es -1 y su elemento final es 5, y cada dos elementos consecutivos del vector tienen una diferencia de una unidad.
+
+```{r}
+s2 = seq(from=-1, to=5)
+s2
+
+```
+
+Ejemplo 3: s3<-seq(to=2, from=-2); s3 note que puede invertir el orden de “to” y de “from”.
+
+```{r}
+s3<-seq(to=2, from=-2)
+s3
+```
+
+Ejemplo 4: Secuencia con incremento o decremento: s4=seq(from=-3, to=3, by=0.2); s4 crea una secuencia que inicia en -3 y termina en 3 con incrementos de 0.2 en 0.2.
+
+```{r}
+s4=seq(from=-3, to=3, by=0.2)
+s4
+```
+
+Ejemplo 5. Repetición de una secuencia s5 <- rep(s3, times=3); s5
+
+```{r}
+s5 <- rep(s3, times=3)
+s5
+```
+
+### OPERACIONES CON VECTORES NUMÉRICOS
+
+Ejemplo 1: 1/x (observe que calcula el inverso de cada elemento del vector)
+
+Presentamos primero el vector x y sus componentes:
+
+```{r}
+x
+```
+
+Comando para obtener el inverso de cada elemto que conforma el vector:
+
+```{r}
+1/x
+```
+
+
+Ejemplo 2: $v=2*x+z+1$; v (genera un nuevo vector, v, de longitud 11, construido sumando, elemento a elemento, el vector 2*x repetido 2.2 veces, el vector y, y el número 1 repetido 11 veces “Reciclado en R es repetir las veces necesarias un vector cuando en una operación intervienen vectores de distinta longitud”).
+
+```{r}
+v=2*x+z+1
+v
+```
+
+Ejemplo 3: e1 <- c(1, 2, 3, 4); e2<-c(4, 5, 6, 7); crossprod(e1, e2) ó t(e1)%*%e2 (calcula el producto interno entre dos vectores. Ambos deben tener el mismo número de elementos. 
+
+
+Creacion de los Vectores e1 y e2 para luego llevar a cabo el proceso solicitado en este ejemplo:
+
+```{r}
+e1 <- c(1, 2, 3, 4)
+e1
+
+e2<-c(4, 5, 6, 7)
+e2
+
+```
+
+Procesos realizados para llevar a cabo el producto interno del vector e1 y e2:
+
+Primer forma de llevar a cabo el proceso:
+
+```{r}
+crossprod(e1, e2)
+
+```
+
+Segunda manera de llevar a cabo el proceso.
+
+```{r}
+t(e1)%*%e2
+```
+
+
+### OPERACIONES DE FUNCIONES SOBRE VECTORES NUMÉRICOS.
+
+Ejemplo 1: Vector transpuesto del vector x: xt = t(x); xt.
+
+```{r}
+# Determinamos primero el vector x:
+x
+
+#Proceso de la transpuesta en el vector x:
+xt = t(x)
+xt
+
+```
+
+Ejemplo 2: u = exp(y);u (crea un nuevo vector de la misma longitud que y, en el cual cada elemento es la exponencial elevando a su respectivo elemento en y).
+
+```{r}
+# Mostramos el Vector y:
+y
+
+# Proceso Solicitado:
+u = exp(y)
+u
+
+```
+
+El siguiente comando u = options(digits=10) ; u ;Permite visualizar un mínimo de 10 dígitos.
+
+```{r}
+u = options(digits=10) 
+u 
+
+```
+
+### OTRAS OPERACIONES:
+
+Ejemplo 1: resum <- c(length(y), sum(y), prod(y), min(y), max(y)); resum:
+El codigo mostrado representa la creacion de un vector con operaciones elementales como suma, producto, valor maximo, valor minimo entre otras operaciones que se les pueden aplicar a una matriz.
+
+```{r}
+
+resum <- c(length(y), sum(y), prod(y), min(y), max(y))
+resum
+
+```
+
+Ejemplo 2: Ordenamiento de un vector: yo <- sort(y); yo
+
+```{r}
+yo <- sort(y)
+yo
+
+```
+
+
+## 1.2 VECTORES DE CARACTERES
+
+###FORMA 1-Crear un vector de caracteres vacío y añadirle luego sus elementos.
+
+Ejemplo 1: S<-character()
+
+```{r}
+s<- character()
+s
+```
+
+###FORMA 2-Crear un vector de caracteres asignándole todos sus elementos.
+
+Ejemplo 1: Crear el vector de caracteres: deptos <- c("Santa Ana", "Sonsonate", "San Salvador"); deptos
+
+```{r}
+deptos <- c("Santa Ana", "Sonsonate", "San Salvador")
+deptos
+
+```
+
+Ejemplo 2: Agregue el elemento "Ahuachapán" en la cuarta posición. deptos[4]="Ahuachapán"; deptos (R Permite incrementar el tamaño del vector en cualquier instante).
+
+```{r}
+deptos[4]= "Ahuachapan"
+deptos
+
+```
+
+###FORMA 3-Crear un vector de caracteres dándole nombres a los elementos para identificarlos más fácilmente.
+
+Ejemplo 1: codDeptos <- c(11, 12, 13, 14) 
+names(codDeptos) <- c("Usulután", "San Miguel", "Morazán", "La Unión");codDeptos
+Oriente <- codDeptos [c("La Unión", "San Miguel")];Oriente
+
+```{r}
+codDeptos <- c(11, 12, 13, 14)
+codDeptos
+
+names(codDeptos) <- c("Usulután", "San Miguel", "Morazán", "La Unión")
+codDeptos
+
+Oriente <- codDeptos [c("La Unión", "San Miguel")]
+Oriente
+
+```
+
+Ejemplo 2: Crear un vector con las etiquetas X1, Y2, ... , X9, Y10 
+
+etiqs<-paste(c("X", "Y"), 1:10, sep=""); etiqs;Crea un vector de caracteres resultado de la unión de “X” o de “Y” con uno de los número comprendidos entre 1 y 10, sep=”” indica que no se deja espaciado en la unión. 
+
+```{r}
+etiqs<-paste(c("X", "Y"), 1:10, sep="") 
+etiqs
+
+```
+
+# 2. CREACIÓN Y MANEJO DE MATRICES.
+
+## 2.1 CREACIÓN DE MATRICES NUMÉRICAS.
+
+### FORMA 1-Crear una matriz numérica vacía y añadirle luego sus elementos.
+
+Ejemplo 1: M <- matrix(numeric(), nrow = 3, ncol=4)
+
+```{r}
+M <- matrix(numeric(), nrow = 3, ncol=4)
+M
+
+```
+
+Ejemplo 2: Asignación de los elementos de una matriz: M[2,3] <- 6; M 
+Este tipo de Asignacion es similar a la de un vector pero considerando que se deben utilizarse dos índices para indicar fila y columna.
+
+Proceso realizado:
+
+```{r}
+M[2,3]<- 6
+M
+```
+
+### FORMA 2-Crear una matriz numérica asignándole todos sus elementos o valores.
+
+Ejemplo 1: A <- matrix(c(2, 4, 6, 8, 10, 12), nrow=2, ncol=3); A ;Observe que R almacena los elementos por columna. Se pueden explorar algunas características de la matriz A, por ejemplo: mode(A); dim(A); attributes(A); is.matrix(A); is.array(A)
+
+Proceso realizado:
+
+```{r}
+A <- matrix(c(2, 4, 6, 8, 10, 12), nrow=2, ncol=3)
+A
+```
+
+Algunas de las Caracteristicas obtenidas:
+
+```{r}
+mode(A) 
+dim(A)
+attributes(A) 
+is.matrix(A)
+is.array(A)
+
+```
+
+### FORMA 3-Crear una matriz numérica dando un rango de valores
+
+Ejemplo 1: B <- matrix(1:12, nrow=3, ncol=4); B
+
+```{r}
+B<- matrix(1:12, nrow=3, ncol=4)
+B
+
+```
+
+
+### FORMA 4-Crear una matriz a partir de la unión de vectores
+
+I.  Crear tres vectores
+
+```{r}
+
+x1 <- seq(0, 10, 2) 
+x1
+
+x2 <- seq(1, 11, 2) 
+x2
+
+x3 <- runif(6) 
+x3 # Vector con valores de una uniforme(0,1)
+
+```
+
+II.  Unir los tres vectores en una matriz por columnas.
+
+```{r}
+Xcol <- cbind(x1, x2, x3) 
+Xcol
+```
+
+III. Unir los tres vectores en una matriz por filas.
+
+```{r}
+Xfil <- rbind(x1, x2, x3) 
+Xfil
+```
+
+IV.  Acceso a las filas y columnas de una matriz.
+
+```{r}
+X <- Xfil[1:3, c(2, 3)] 
+X  
+```
+
+Con el comando anterior se crea una submatriz de dimensión 3x2 (el 3 se indica por 1:3), las columnas están conformadas por la segunda y tercera columna de la matriz Xfill (se indica por C(2,3))
+
+## 2.2 OPERACIONES CON MATRICES NUMÉRICAS.
+
+### MULTIPLICACIÓN DE MATRICES MATRICES NUMÉRICAS:
+
+Ejemplo 1: Multiplicación de un vector por una matriz: v<-c(1, 2); v %*%A
+
+Mostraremos la Matriz A:
+
+```{r}
+A
+```
+
+Comando utilizado para llevar a cabo el Ejemplo 1:
+
+```{r}
+v<-c(1, 2)
+v%*%A
+```
+
+Ejemplo 2: Multiplicación de matrices: P <- A %*% B; P
+
+Mostramos la Matriz A
+```{r}
+A
+```
+
+Mostramos la Matriz B
+```{r}
+B
+```
+
+Porceso a realizar del ejemplo 2:
+```{r}
+P<-A%*%B
+P
+```
+
+Ejemplo 3: Multiplicación de un escalar por una matriz: $2*A$ (nótese que al usar 2%*%A se obtiene un error pues las dimensiones no son compatibles).
+
+Mostramos los elementos de la Matriz A
+```{r}
+A
+```
+
+Verificamos el primer comando establecido por la practica en el cual verificaremos un Error obtenido al establecer el comando de esta manera 2%*%A, por tal motivo en el documento se establecera como comentario:
+
+```{r}
+# 2%*%A
+```
+
+Proceso Correcto establecido para el Ejemplo correcto mediante el siguiente comando:
+
+```{r}
+2*A
+```
+
+
+### OPERACIONES DE FUNCIONES SOBRE MATRICES NUMÉRICAS:
+
+Ejemplo 1: Longitud o número de elementos: length(A)
+
+```{r}
+
+length(A)
+
+```
+
+Ejemplo 2: T=sqrt(B); T (observe que la raíz se saca a cada elemento de la matriz)
+
+Mostramos los elementos de la Matriz B:
+
+```{r}
+B
+```
+
+Comando para el Proceso obtener la raiz de cada uno de los elementos de la matriz B establecido en el ejemplo 2:
+
+```{r}
+T=sqrt(B)
+T
+```
+
+Ejemplo 3: Transpuesta de una matriz: t(A)
+
+Transpuesta de la Matriz A:
+
+```{r}
+t(A)
+```
+
+Ejemplo 4: Determinante de una matriz:
+
+```{r}
+C <- matrix(c(2, 1, 10, 12), nrow=2, ncol=2) 
+
+C
+
+det(C)
+
+```
+
+Ejemplo 5: Inversa de una matriz, resulta de resolver el sistema Ax = b con b=I:
+
+Primer manera de llevar a cabo el proceso:
+
+```{r}
+InvC <- solve(C) 
+InvC 
+
+```
+
+Segunda manera de llevar a cabo el proceso:
+
+```{r}
+b=diag(2) 
+InvC<-solve(C, b) 
+InvC
+
+```
+
+Ejemplo 6: Autovalores y autovectores de uma matriz simétrica: eigen(C)
+
+Matriz C:
+
+```{r}
+C
+```
+
+Comando del proceso a realizar:
+
+```{r}
+eigen(C)
+```
+
+Ejemplo 7: La función diag(nombMatriz), devuelve un vector formado por los elementos en la diagonal de la matriz nombMatriz.
+
+Comando del proceso solicitado:
+
+Matriz que utilizaremos de ejemplo:
+
+```{r}
+C
+```
+
+Al observar la Matriz C, se puede determinar que sus elementos que estan en la diagonal son: 2, 12.
+
+Obtendremos ese resultado utilizando el comando establecido en el ejemplo 7 diag(C):
+
+```{r}
+diag(C)
+```
+
+Al llevar a cabo el proceso anterior tenemos como resuotado el vector con los dos elementos de la diagonal de la matriz C.
+
+Ejemplo 8: La función diag(nomVector), devuelve una matriz diagonal cuyos elementos en la diagonal son los elementos del vector nomVector.
+
+La matriz que utilizaremos es la Matriz A, tener en cuenta que como necesitamos determinar mediante el proceso un vector formado por los elementos de la diagonal de la matriz, esta matriz no es de nxn por lo tanto la diagonal sera de los elementos pares que aparezcan:
+
+```{r}
+diag(A)
+```
+
+Ejemplo 9: La función diag(escalar), devuelve la matriz identidad de tamaño nxn.
+
+Utilizaremos la matriz C:
+
+```{r}
+C
+
+diag(C)
+
+```
+
+### OTRAS OPERACIONES:
+
+Ejemplo 1: c(length(A), sum(A), prod(A), min(A), max(A))
+
+```{r}
+c(length(A), sum(A), prod(A), min(A), max(A))
+
+```
+
+Tomar en cuenta que el proceso anterior muestra el vector formado por cada una de las operaciones anteriores en la Matriz A.
+
+Ejemplo 2: O <- matrix(sort(C), nrow=2, ncol=2); O (sort() genera um vector en los cual sus elementos han sido ordenados de menor a mayor a partir de los elementos de la matriz C).
+
+Matriz C:
+
+```{r}
+C
+```
+
+Proceso a realizar en el ejemplo 2:
+
+```{r}
+O <- matrix(sort(C), nrow=2, ncol=2)
+O
+```
+
+## 2.3 CREACIÓN DE UNA MATRIZ DE CADENAS
+
+Ejemplo 1: nombres <- matrix(c("Carlos", "José", "Ana", "René", "María", "Mario"), nrow=3, ncol=2); nombres
+
+```{r}
+ nombres <- matrix(c("Carlos", "José", "Ana", "René", "María", "Mario"), nrow=3, ncol=2)
+ nombres
+```
+
+# 3. CREACIÓN Y MANEJO DE MATRICES INDEXADAS (ARRAY).
+
+Una variable indexada (array) es una colección de datos, por ejemplo numéricos, indexada por varios índices. R permite crear y manipular variables indexadas en general y en particular, matrices, Una variable indexada puede utilizar no sólo un vector de índices, sino incluso una variable indexada de índices, tanto para asignar un vector a una colección irregular de elementos de una variable indexada como para extraer una colección irregular de elementos. 
+
+Un vector es un array unidimensional y una matiz es un array bidimensional. 
+
+Una variable indexada se construye con la función array(), que tiene la forma general siguiente:
+
+NombMatriz <- array(vector_de_datos, vector_de_dimensiones)
+
+## Ejemplos realizados Utilizando distintas Operaciones
+
+Ejemplo 1:
+
+```{r}
+X <- array(c(1, 3, 5, 7, 9, 11), dim=c(2, 3)) 
+X
+```
+ 
+Ejemplo 2: 
+```{r}
+Z <- array(1, c(3, 3)) 
+Z
+```
+
+Ejemplo 3: 
+
+Operaciones aritméticas:
+```{r}
+W <- 2*Z+1 
+W
+```
+
+Ejemplo 4: 
+
+Operaciones con funciones: 
+
+```{r}
+TX <- t(X) 
+TX
+```
+
+Ejemplo 5: 
+
+Producto exterior de dos vectores con: 
+operador %o%
+
+```{r}
+a <- c(2, 4, 6) 
+a
+b <- 1:3
+b
+M <- a %o% b 
+M
+```
+
+M es un array o matriz.
+
+Nota: c <- a * b; c devuelve un vector con el producto de elemento por elemento
+
+En R se distingue entre matrices y arrays: las matrices son colecciones de elementos indexados por filas y columnas; los arrays son extensiones de ellas donde el conjunto de índices o dimensiones puede ser mayor que dos.
+
+Ejemplo 6: 
+
+Una matriz de tres dimensiones (i, j, k)
+
+Con el comando que se utilizara a continuacion su funcionalidad es de crear un arreglo de 3 matrices cada una de 2 filas y 4 columnas.
+
+```{r}
+Arreglo3 <- array(c(1:8, 11:18, 111:118), dim = c(2, 4, 3))
+
+Arreglo3 
+```
+
