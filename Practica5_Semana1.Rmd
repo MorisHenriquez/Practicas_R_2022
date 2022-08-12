@@ -255,6 +255,11 @@ x<- seq(-pi, pi, len=100)
 seno(x)
 ```
 
+
+## EJERCICIOS PROPUESTOS
+
+### EJERCICIO 1
+
 Ejercicio 1: Escriba una función para encontrar el factorial de un número mayor que cero.
 
 Solucion:
@@ -264,17 +269,138 @@ factorial <- function(x)
 {
  contador <- 1
  for(i in 1:x) contador = contador*i
- factorial = contador
+ 
+ contador
 } 
 
 ```
+
+De esta manera realizamos esta funcion, por lo tanto, lo siguiente a presentar es un ejemplo encontrando el valor del factorial de varios numeros:
+
+Ejemplo 1:
+
 ```{r}
-x = 3
+x = 4
 factorial(x)
 ```
 
+Ejemplo 2:
+
+```{r}
+x = 7
+factorial(x)
+```
+
+Ejemplo 3:
+
+```{r}
+x = 10
+factorial(x)
+```
+
+
+### EJERCICIO 2
+
 Ejercicio 2: Escriba una función para encontrar la varianza o la cuasi-varianza de un vector de datos.
+
+Solucion:
+
+```{r}
+CuasiV <- function(a)
+{
+ n = length(a)
+ sumaX <- 0.0
+ sumaM <- 0.0
+ for(i in 1:n) sumaX = sumaX + a[i]
+ X1 = sumaX
+ for(i in 1:n) sumaM = sumaM + a[i]
+ X2 = sumaM/n
+ 
+ XC = (X1-X2)^2
+ CuasiV = XC/n
+ CuasiV
+ 
+} 
+
+
+```
+
+Luego de realizar la funcion para encontrar la Cuasi-Varianza establecemos un ejemplo, se creo un vector de 5 elementos y se le aplico el procedimiento realizado en la funcion:
+
+```{r}
+a <- 1:5
+a
+
+CuasiV(a)
+```
+
+### EJERCICIO 3
 
 Ejercicio 3: Escriba una función para encontrar la media geométrica de un vector de datos.
 
+Solucion:
+
+```{r}
+MG <- function(b) 
+{
+  n = length(b)
+  p <- 1
+  
+  for(i in 1:n) p = p*b[i]
+  
+  MG = (p)^(1/n)  
+  MG
+}
+```
+
+Luego de realizar la Funcion para calcular la media Geometrica para un vector de datos, proseguimos a realizar un ejemplo demostrativo de dicha funcion:
+
+```{r}
+b <- c(50, 72, 54, 82, 93)
+b
+MG(b)
+```
+
+### EJERCICIO 4
+
 Ejercicio 4: Escriba una función para encontrar la media armónica de un vector de datos. 
+
+Solucion:
+
+```{r}
+MA <- function(c)
+{
+  n = length(c)
+  suma1 = 0.0
+  
+  for (i in 1:n) suma1= suma1 + (c[i])^-1
+  D = suma1
+  MA = n/D
+  MA
+}
+```
+
+Luego de realizar la funcion, llevamos a cabo dos ejemplos para verificar los resultados obtenidos:
+
+Ejemplo 1:
+```{r}
+c <- c(2, 4, 8)
+c
+
+MA(c)
+```
+
+Ejemplo 2:
+
+```{r}
+c<- c(3, 5, 6, 6, 7, 10, 12)
+c
+
+MA(c)
+```
+
+De esta manera se llevaron a cabo los procesos de creacion de estas cuatro funciones, para encontrar el factorial de un numero, la cuasi-varianza, la media geometrica y la media armonica.
+
+
+
+
