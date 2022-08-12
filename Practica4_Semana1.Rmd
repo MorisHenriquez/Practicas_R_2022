@@ -74,7 +74,7 @@ Mexico <- read.table("contaminacion_mexico.xls");Mexico.
 Solo se mostraran los primeros 6 datos:
 
 ```{r}
-##Mexico <- read.table("mexico.dat")
+Mexico <- read.table("mexico.dat")
 ##Mexico
 #View(Mexico)
 
@@ -275,9 +275,11 @@ read.spss(“demo.sav”, use.value.labels=TRUE, max.value.label=Inf, to.data.fr
 A continuacion llevaremos a cabo el proceso de leer el contenido de demo.sav y cargar el paquete, cabe recalcar que el proceso de carga lo dejaremos como comentario: Solo se mostraran 6 Datos mediante el comando Head.
 
 ```{r}
-#library(foreign)
+library(foreign)
 
 #read.spss("demo.sav", use.value.labels = TRUE, max.value.labels = Inf, to.data.frame = T)
+
+spss<- read.spss("demo.sav", use.value.labels = TRUE, max.value.labels = Inf, to.data.frame = T)
 
 head(spss)
 ```
@@ -285,4 +287,9 @@ head(spss)
 Al vizualizar la lecturar del documento spss determinamos dejarlo como comentario debido a la cantidad de datos establecido por ese archivo.
 
 • Realizar los análisis o cálculos correspondientes. 
+
+# IMPORTACION Y EXPORTACION DE DATOS EN R (R-COMMANDER)
+
+## USO DE INTERFAZ GRAFICA R-COMMANDER.
+
 
