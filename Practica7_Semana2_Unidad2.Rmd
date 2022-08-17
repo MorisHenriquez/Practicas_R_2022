@@ -1,0 +1,291 @@
+---
+title: "Practica7_Semana2_Unidad2_2022"
+author: "Moris Henriquez"
+date: '2022-08-13'
+output: pdf_document
+lang: es-ES
+toc: TRUE
+---
+\pagebreak
+
+# ANALISIS ESTADISTICOS DE DATOS UNIVARIADOS DISCRETOS CON R.
+
+## ANÁLISIS ESTADÍSTICO DE LOS DATOS.
+
+1°) Activar el directorio de trabajo:
+
+Primero verificaremos el directorio de nuestro trabajo mediante el siguiente comando: getwd()
+
+```{r}
+getwd()
+```
+
+Debido a que nuestro directorio de trabajo es el utilizado actualmente mediante las practicar de R realizadas, solo dejaremos como comentario el proceso a realizar para llevar a cabo la activacion del directorio:
+
+setwd("C:/Moris_Henriquez/Practicas_R_2022_Semana1") 
+
+
+2°) Crear un nuevo script y llamarle Script07-DatosDiscretos 
+
+Debido a que estamos trabajando mediante archivos de R-MarkDown, se realizo el proceso de creacion de un nuevo scrip de R-MarkDown (Practica7_Semana2_Unidad2) en el cual se llevaran a cabo los procesos de la Practica7.
+
+
+3º) Crear el vector de datos.
+
+Proceso a realizar:
+
+Creacion del vector con los datos, ademas se realiza la vizualizacion del tamaño del vector:
+
+```{r}
+Hijos <- c(2, 1, 2, 1, 4, 2, 3, 0, 2, 3, 3, 2, 1, 0, 2, 4, 1, 2, 1, 3, 4, 1, 2, 3, 1, 5, 2, 3, 1, 2)
+
+Hijos
+
+length(Hijos)
+
+data.entry(Hijos)
+
+```
+
+4º) Guardar el vector de datos en un archivo de texto.
+
+Proceso a realizar:
+
+```{r}
+write(Hijos, "Hijos.txt")
+
+```
+
+
+5º) Limpiar el área de trabajo (Workspace)
+
+```{r}
+ls()
+rm(list=ls(all=TRUE)) 
+ls()
+```
+ 
+6º) Leer o recuperar el vector de datos o archivo de texto.
+
+Proceso a llevar a cabo:
+
+```{r}
+X <- scan("Hijos.txt", what = integer(0), na.strings = "NA", flush=FALSE)
+X
+
+ls()
+
+```
+
+Tener en cuenta lo siguiente:
+
+1- Si el vector contiene caracteres se usa: what = character()
+
+2- Si el vector contiene reales se ocupa: what = double(0) 
+
+7º) Elaborar el gráfico de puntos y diagrama de tallo-hojas (stem-and-leaf)
+
+Gráfico de puntos:
+
+Proceso:
+
+```{r}
+stripchart(X, method="stack", vertical=FALSE, col="blue", pch=1, main="Gráfico de
+puntos", xlab="Número de hijos")
+
+```
+
+Observación: method puede ser:
+
+"overplot" (los puntos coincidentes son superpuestos)
+
+"jitter" (los puntos se ven como alejados o inquietos)
+
+"stack" (los puntos coincidentes son apilados, uno tras otro) 
+
+
+8º) Crear la tabla de frecuencias completa.
+
+frecuencias individuales.
+
+Proceso a Realizar:
+
+Frecuencia Absolutas:
+
+```{r}
+fab <- table(X)
+fab 
+```
+
+Frecuencias Relativas:
+
+```{r}
+fre <- fab/length(X) 
+fre
+```
+
+Frecuencias Acomuladas:
+
+```{r}
+Fac <- cumsum(fab) 
+Fac
+```
+
+Frecuencias Acomuladas Relativas:
+
+```{r}
+Far <- Fac/length(X)
+Far 
+```
+
+
+Tabla de frecuencias completa:
+
+Proceso a Realizar:
+
+```{r}
+options(digits=2)
+tabla <- data.frame(fab=fab, fre=fre, Fac=Fac, Far=Far)
+names(tabla) <- c("X", "fab", "free.X", "fre", "Fac", "Far")
+tabla
+tfre <- data.frame(X=tabla$X, fab=tabla$fab, fre=tabla$fre, Fac=tabla$Fac, Far=tabla$Far)
+tfre
+
+```
+
+Note que el cuadro resultante no tiene la presentación deseada para presentarla en un informe. Sin embargo, si estamos utilizando LATEX podemos utilizar la siguiente instrucción xtable(tfre) y con esto nos genera el código correspondiente para incorporarlo en nuestro archivo.
+
+
+9º) Calcular los estadísticos descriptivos de la variable.
+
+Estadísticos de tendencia central de los datos.
+
+Proceso a Realizar:
+
+Media de los Datos Estudiados:
+
+```{r}
+media <- mean(X, na.rm = FALSE) 
+media
+```
+
+Tener en cuenta que na.rm = FALSE, le indica a R que los datos faltantes son omitidos en el cálculo de la media.
+
+Moda de los datos Estudiados:
+
+```{r}
+for(i in 1:length(X)) if (fab[i] == max(fab)) break()
+
+moda <- names(fab[i]) 
+moda 
+```
+
+R no tiene incorporada una función para la moda.
+
+Mediana de los Datos Estudiados:
+
+```{r}
+mediana <- median(X) 
+mediana
+
+```
+
+Estadísticos de dispersión o variabilidad de los datos:
+
+Valor Maximo y minimo de los Datos Estudiados:
+
+```{r}
+range(X)
+```
+
+Cuasi-Varianza de los Datos Estudiados:
+
+```{r}
+Cuasivar<- var(X)
+Cuasivar
+```
+Cuasi-Varianza muestral de los Datos Estudiados:
+
+```{r}
+s <- sd(X) 
+s
+
+```
+
+Calculo de los Cuartiles del conjunto de Datos estudiado:
+
+```{r}
+quantile(X,c(0.25, 0.5, 0.75))
+```
+
+Anteriormente se realizo el Cálculo de Q1, Q2, Q3
+
+Calculo de algun Percentil:
+
+```{r}
+quantile(X, 0.6)
+```
+
+Con el proceso realizado anteriormente se puede decir que de manera general se pueden encontrar cualquier percentil.
+
+Conocer un resumen de los datos:
+
+```{r}
+resumen <- summary(X)
+resumen
+```
+
+Los datos obtenidos con el proceso anterior son: Min, Q1, Median, Mean, Q3, Max
+
+
+Otro proceso a realizar:
+
+```{r}
+fivenum(X)
+```
+
+Resultado obtenido: min, cuartil menor, mediana, cuartil mayor, max 
+
+
+10º) Elaborar los gráficos que se le pueden aplicar a la variable discreta
+
+## Gráfico de barras (por ser pocos valores) :
+```{r}
+barplot(tfre[[2]], main="Gráfico de barras", xlab="X = Número Hijos\n", ylab="frecuencia", col=c("yellow", "blue", "white", "orange", "cyan", "red"), sub="Agosto-2012")
+```
+
+
+## Gráfico de pastel (por ser pocos valores):
+
+```{r}
+pie(tfre[[2]], main="Gráfico de pastel", xlab="Número Hijos \n", col=c("yellow", "blue",
+"white", "orange", "cyan", "red"), sub="Agosto-2012")
+```
+
+
+Se puede especificar nombres para las categorías
+
+```{r}
+names(fab) = c("Cero", "Uno", "Dos", "Tres", "Cuatro", "Cinco")
+
+pie(fab, main="Gráfico de pastel", xlab="X = Número Hijos\n", col=c("yellow", "blue",
+"white", "orange", "cyan", "red"), sub="Agosto-2012") 
+```
+
+## Gráfico de cajas (box-plot) es la representación gráfica de los cinco números
+
+### Horizontal:
+
+```{r}
+boxplot(X, main="Gráfico de caja", ylab="Número de hijos\n")
+```
+
+### Vertical:
+
+```{r}
+boxplot(X, main="Gráfico de caja", xlab=" Número de hijos\n", plot=TRUE, border="red",
+col="yellow", horizontal=TRUE)
+```
+
+
+NOTE QUE TODOS LOS GRÁFICOS DE BARRAS Y DE PASTEL SON REALIZADOS APARTIR DE UNA TABLA DE FRECUENCIA, LA CUAL SE INDICA EN tfre[[2]]. TAMBIÉN SE PUDO UTILIZAR tabla[[2]]. 

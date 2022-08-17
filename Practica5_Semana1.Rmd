@@ -402,5 +402,3 @@ MA(c)
 De esta manera se llevaron a cabo los procesos de creacion de estas cuatro funciones, para encontrar el factorial de un numero, la cuasi-varianza, la media geometrica y la media armonica.
 
 
-
-
