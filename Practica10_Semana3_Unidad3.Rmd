@@ -1,0 +1,405 @@
+---
+title: "Practica10_Semana3_Unidad3_2022"
+author: "Moris Henriquez"
+date: '2022-08-18'
+output: pdf_document
+lang: es-ES
+toc: TRUE
+---
+
+\pagebreak
+
+# ANALISIS DE UNA VARIABLE BIDIMENCIONAL (CATEGORICA, CONTINUA).
+
+## Ejemplo 1:
+
+Se están estudiando tres procesos (A, B, C) para fabricar pilas o baterías. Se sospecha que el proceso incide en la duración (en semanas) de las baterías, es decir, que la duración (en semanas) de los procesos es diferente. Se seleccionan aleatoriamente cinco baterías de cada proceso y al medirles aleatoriamente su duración los datos que se obtienen, son los siguientes:
+
+## Realice un análisis estadístico de los datos.
+
+
+Nota: Cuando los datos bivariados se obtiene de una variable cualitativa y otra cuantitativa, los valores cuantitativos de cada categoría o nivel de la variable cualitativa se consideran como muestras o grupos diferentes. Cada muestra se describe aplicando la representación y medidas de resumen de una variable univariada pero de manera conjunta. 
+
+Para llevar a cabo el proceso del analisis estadistico de los datos realizaremos lo siguiente:
+
+### 1º) Activa tu directorio de trabajo.
+```{r}
+getwd()
+```
+
+Debido a que nuestro directorio de trabajo es el correcto omitiremos el proceso 1 que se realiza de la siguiente manera como ejemplo: setwd("C:/Curso R2022")
+
+### 2º) Crea un nuevo script y llámale "Script10-DatosBivariados2"
+
+Debido a que trabajamos mediante R-MarkDown lo que se realizo es el proceso de crear un nuevo archivo de este tipo.
+
+
+### 3º) Crea un vector de datos para cada proceso descrito en el problema.
+
+
+```{r}
+A <- c(100,96,92,96,92)
+A
+
+B <- c(76,80,75,84,82) 
+B
+
+C <- c(108,100,96,98,100) 
+C
+```
+
+### 4º) Crea una hoja de datos teniendo como componentes (columnas) los tres vectores (se puede hacer pues el número de datos en cada proceso es igual, de lo contrario se debería de crear dos variables una para la duración de cada proceso y otra para identificar a qué proceso corresponde).
+
+Proceso a realizar:
+
+```{r}
+Baterias <- data.frame(procesoA=A, procesoB=B, procesoC=C) 
+
+Baterias
+```
+
+Para editar los datos puede utilizar la función fix():
+
+```{r}
+fix(Baterias)
+```
+
+### 5º) Guarda la hoja de datos en un archivo.
+
+```{r}
+write.table(Baterias, file="Baterias.txt", append=FALSE, quote=TRUE, sep=" ", na="NA",
+col.names=TRUE)
+```
+
+
+### 6º) Elimina todos objetos que existen en el espacio de trabajo (Workspace)
+
+```{r}
+ls()
+
+rm(list=ls(all=TRUE)) 
+
+ls()
+```
+
+### 7º) Recupera la hoja de datos, para probar si fue guardada.
+
+```{r}
+Baterias <- read.table("Baterias.txt", header=TRUE)
+
+Baterias
+```
+
+### 8º) Conecta o adjunta la hoja de datos a la segunda ruta o lista de búsqueda.
+
+```{r}
+attach(Baterias, pos=2)
+
+search()
+```
+
+### 9º) Dibuja un gráfico horizontal de puntos para los tres procesos.
+
+```{r}
+stripchart(Baterias, main="Gráfico de puntos para los tres procesos", method = "stack", vertical = FALSE, col="blue", pch=1, xlab="Duración (semanas)", ylab="Proceso")
+
+```
+
+Note que con ayuda de este gráfico podemos observar sí los tres procesos se comportan de
+manera distinta o parecida en cuanto a duración en semanas de las baterías.
+
+
+### 10º) Muestra un resumen estadístico para los tres procesos.
+
+```{r}
+summary(Baterias)
+```
+
+### 11º) Dibuja un gráfico de cajas (box-plot) para los tres procesos.
+
+
+Horizontal.
+
+
+```{r}
+boxplot(Baterias, width=NULL, varwidth=TRUE, names, add= FALSE, horizontal = TRUE, main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"), xlab = "Duración (semanas)", ylab="Proceso")
+```
+
+Vertical.
+
+```{r}
+boxplot(Baterias, width=NULL, varwidth=TRUE, names, add= FALSE, horizontal = FALSE,
+main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"), xlab = "Duración (semanas)", ylab="Proceso")
+```
+
+
+### 12º) Presenta la matriz de covarianzas muestral.
+
+```{r}
+options(digits=3)
+
+```
+
+sólo imprime 3 lugares decimales
+
+
+```{r}
+S <- var(Baterias)
+
+S 
+```
+
+### 13º) Presenta la desviación estándar de cada proceso.
+
+```{r}
+# desv <- sd(Baterias)
+
+# desv
+```
+
+### 14º) Realiza un análisis de varianza de una vía, para probar la hipótesis nula de que el proceso no influye en la duración de las baterías, es decir, que no hay diferencias entre los tres procesos.
+
+
+$$ H_{0} : \mu_{A} = \mu_{B} = \mu_{C}$$ , no existe diferencias entre los tres procesos.
+$$H_{1} : \mu_{i} \neq \mu_{j}, por lo menos un par  i \neq j$$, de procesos difieren en la duración de las baterías.
+
+
+Concatena los tres vectores dentro de un vector simple, junto con un vector factor indicador de la categoría o tratamiento (A, B, C) que origina cada observación. El resultado es un data.frame que tiene como componentes los dos vectores anteriores.
+
+```{r}
+Baterias <- stack(Baterias)
+
+Baterias
+
+names(Baterias)
+```
+
+```{r}
+names(Baterias)
+```
+
+Muestra los encabezados de los vectores
+
+Prueba de igualdad de medias por descomposición de la varianza en dos fuentes de variación: la variabilidad que hay entre los grupos (debida a la variable independiente o los tratamientos), y la variabilidad que existe dentro de cada grupo (variabilidad no explicada por los tratamientos).
+
+
+```{r}
+# aov.Baterias <- aov(values~ind, data=Baterias)
+```
+
+$$ values\backsim ind relaciona los valores muestrales con los respectivos grupos$$ 
+
+
+```{r}
+## summary(aov.Baterias)
+```
+
+
+Note que es necesario la instrucción anterior para poder visualizar la tabla ANOVA.
+
+
+Decisión: ya que $$\alpha = 0.05 > p-value obtenido, entonces se rechaza H_{0}$$
+
+Prueba de igualdad de medias en un diseño de una vía (o unifactorial) asumiendo que las varianzas de los grupos son iguales
+
+```{r}
+# oneway.test(values~ind, data=Baterias, var.equal = TRUE)
+```
+
+### 15º) Deshace la concatenación del vector de valores y el vector indicador de categoría.
+
+
+```{r}
+Baterias = unstack(Baterias)
+
+Baterias
+```
+
+###16º) Desconecta la hoja de datos de la segunda ruta o lista de búsqueda.
+
+```{r}
+detach(Baterias, pos=2) 
+
+search()
+```
+
+
+## Ejemplo 2:
+
+Suponga que un estudiante hace una encuesta para evaluar sí los estudiantes que fuman estudian menos que los que no fuman. Los datos registrados son: 
+
+
+Para llevar a cabo este proceso realizaremos lo siguientes pasos:
+
+REALICE UN ANÁLISIS ESTADÍSTICO DE LOS DATOS.
+
+### 1º) Activa tu directorio de trabajo.
+
+
+```{r}
+getwd()
+```
+
+Omitiremos este proceso setwd("C:/Curso R2022")
+
+
+### 2º) Crea un nuevo script y llámale "Script11-DatosBivariados3"
+
+Se lleva a cabo medinate el mismo archivo.
+
+
+### 3º) Crea dos vectores con los datos.
+
+```{r}
+Fuma = c("Si","No","No","Si","No","Si","Si","Si","No","Si") 
+
+Fuma
+
+Cantidad = c(1,2,2,3,3,1,2,1,3,2) 
+
+Cantidad
+```
+
+### 4º) Crea una hoja de datos que tenga como componentes o columnas los dos vectores.
+
+```{r}
+Estudia <- data.frame(Fuma=Fuma, Cantidad=Cantidad)
+
+Estudia
+```
+
+Puedes editar los datos utilizando el siguiente comando o funcion:
+
+```{r}
+fix(Estudia)
+```
+
+###5º) Guarda la hoja de datos en un archivo.
+
+```{r}
+write.table(Estudia, file="Estudia.txt", append=FALSE, quote=TRUE, sep=" ", na="NA",
+col.names=TRUE)
+```
+
+### 6º) Elimina los objetos almacenados en el área de trabajo (Workspace).
+
+```{r}
+ls()
+
+rm(list=ls(all=TRUE))
+
+ls()
+```
+
+### 7º) Recupera desde el archivo la hoja de datos.
+
+```{r}
+Estudia <- read.table("Estudia.txt", header=TRUE)
+
+Estudia
+```
+
+### 8º) Conecta la hoja de datos a la segunda ruta o lista de búsqueda.
+
+```{r}
+attach(Estudia, pos=2)
+
+search()
+```
+
+### 9º) Crea una tabla de contigencia o de doble entrada.
+
+```{r}
+tablaCont <- table(Estudia)
+
+tablaCont
+```
+
+### 10º) Calcula las tablas de proporciones o de probabilidades.
+
+```{r}
+options(digits=3)
+```
+
+sólo imprime 3 lugares decimales
+
+
+Proporciones basadas en el total de la muestra, la suma de filas y columnas suman 1
+
+
+```{r}
+propTotal <- prop.table(tablaCont) 
+
+propTotal
+```
+
+
+Proporciones basadas en el total por fila, cada fila suma 1
+
+
+```{r}
+propFila <- prop.table(tablaCont, 1)
+
+propFila
+```
+
+Proporciones basadas en el total por columna, cada columna suma 1
+
+
+```{r}
+propCol <- prop.table(tablaCont, 2)
+
+propCol 
+```
+ 
+### 11º) Construya los gráficos de barras de la variable bidimensional.
+
+
+Gráfico de barras apiladas con la frecuencia de Cantidad como altura
+
+```{r}
+barplot(table(Estudia$Cantidad, Estudia$Fuma), beside = FALSE, horizontal=FALSE, main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", legend.text =T, xlab="Fuma", ylab="Cantidad de horas-estudio")
+```
+
+
+Gráfico de barras apiladas con la frecuencia de Fuma como altura
+
+```{r}
+barplot(table(Estudia$Fuma, Estudia$Cantidad), beside = FALSE, horizontal=FALSE,main="Gráfico de barras (Cantidad de horas de estudio,Fuma)", legend.text =T, xlab="Cantidad de horas-estudio", ylab="Fuma")
+```
+
+
+Gráfico de barras no apiladas y colocación de leyenda
+
+Crear un factor para los nombres en la leyenda
+
+```{r}
+Fuma=factor(Estudia$Fuma)
+
+Fuma
+
+barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE, legend.text=T)
+
+barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE, legend.text=c("menor que 5", "5-10", "mayor que 10"))
+```
+
+### 12º) Realiza la prueba o contraste Chi-cuadrado para las probabilidades dadas
+
+
+```{r}
+chisq.test(tablaCont)
+```
+Sí $$p-value > \alpha aceptar H_{0}$$ : Las variables son independientes.
+
+Recuerde que las frecuencias esperadas deben ser mayores a 5 para poder utilizarlas.
+
+
+Probabilidades esperadas para la prueba Chi-cuadrada
+
+```{r}
+chisq.test(tablaCont) $expected 
+```
+
+
+
+
