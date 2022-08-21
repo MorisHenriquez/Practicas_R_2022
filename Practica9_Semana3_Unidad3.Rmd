@@ -55,7 +55,7 @@ El proceso para llevar a cabo los datos lo realizaremos mediante la creacion de 
 
 ### 5º) Recupera desde el entorno de R la hoja de datos de Excel.
 ```{r}
-HojaCat <- read.csv("HojaCat.csv", strip.white=TRUE)
+HojaCat <- read.csv("HojaCat.csv", sep= ";", strip.white=TRUE)
 
 HojaCat
 
@@ -103,16 +103,18 @@ Encuentra la suma de cada fila de la tabla de contingencia
 distribución marginal de Y=Ocupación
 
 ```{r}
-# suma.columnas <- apply(tablaCont,2,sum) 
+suma.columnas <- apply(tablaCont,2,sum) 
 
-# suma.columnas
+suma.columnas
 ```
 
 2 indica que son totales por columna
 
+
 Gráficos de barras para tabla de contingencia.
 
 Barras apiladas
+
 ```{r}
 barplot(t(tablaCont), main="Gráfico de barras (Estado, Ocupación)", xlab="Estado civil", ylab="Ocupación", legend.text=TRUE)
 ```
@@ -120,6 +122,7 @@ barplot(t(tablaCont), main="Gráfico de barras (Estado, Ocupación)", xlab="Esta
 Note que t(tablaCont) indica que las barras representan el Estado civil de los encuestados y que éstas se subdividen en cada una de las diferentes ocupaciones consideradas.
 
 En caso de usar únicamente tablaCont; las barras representarán las diferentes ocupaciones y éstas estarán subdividas en cada uno de los estados civiles.
+
 
 Barras agrupadas
  
@@ -140,29 +143,36 @@ ylab="Estado civil", beside=TRUE, legend.text=TRUE)
 
 ### 8º) Calcula tablas de proporciones o de probabilidades.
 
-Guardar las todas las opciones iniciales y modificar número de decimales
+Guardar las todas las opciones iniciales y modificar número de decimales.
+
 ```{r}
 op <- options()
 
 options(digits=3) # sólo imprime 3 lugares decimales
 
 options('digits')
+
 ```
 
+
 Proporciones basadas en el total de la muestra, la suma de filas y columnas suman 1.
+
 ```{r}
 propTotal <- prop.table(tablaCont)
 
 propTotal
 
-barplot(t(propTotal), main="Gráfico de barras (Estado, Ocupación)", xlab="Estado civil\n", ylab="Ocupación", beside=TRUE, legend.text=TRUE)
+barplot(t(propTotal), main="Gráfico de barras (Estado, Ocupación)", xlab="Estado civil\n", ylab="Ocupación", beside=TRUE, legend.text=TRUE).
+
 ```
  
 Proporciones basadas en el total por fila, cada fila suma 1.
+
 ```{r}
 propFila <- prop.table(tablaCont, 1)
 
 propFila
+
 ```
 
 Total por fila se indica en 1
@@ -173,27 +183,29 @@ ylab="Ocupación", beside=TRUE, legend.text=TRUE)
 ```
 
 Proporciones basadas en el total por columna, cada columna suma 1.
-```{r}
-# propColum <- prop.table(tablaCont, 2)
 
-# propColum
+```{r}
+propColum <- prop.table(tablaCont, 2)
+
+propColum
 ```
 
 Total por columna se indica en 2
 
 ```{r}
-#barplot(propColum, main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación\n", ylab="Estado civil", beside=TRUE, legend.text=TRUE)
+barplot(propColum, main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación\n", ylab="Estado civil", beside=TRUE, legend.text=TRUE)
 ```
 
 ### 9º) Otra forma de elaborar los gráficos de barras para el vector bidimensional categórico.
 
-Gráfico de barras no apiladas y colocación de leyenda
+Gráfico de barras no apiladas y colocación de leyenda.
+
 ```{r}
-#barplot(table(Ocupacion, Estado), main="Gráfico de barras (Estado, Ocupación)", xlab = "Estado civil", ylab="Ocupación", beside=TRUE, legend.text=T) 
+barplot(table(Ocupacion, Estado), main="Gráfico de barras (Estado, Ocupación)", xlab = "Estado civil", ylab="Ocupación", beside=TRUE, legend.text=T) 
 
-# barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab = "Ocupación", ylab="Estado civil", beside=TRUE, legend.text=TRUE) 
+barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab = "Ocupación", ylab="Estado civil", beside=TRUE, legend.text=TRUE) 
 
-# barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación", ylab="Estado civil", beside=TRUE, legend.text=c("menor que 2", "2-3", "mayor que 3"))
+barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación", ylab="Estado civil", beside=TRUE, legend.text=c("menor que 2", "2-3", "mayor que 3"))
 
 ```
 
@@ -213,9 +225,11 @@ Tenga en cuenta que las frecuencias esperadas deben ser todas mayores a 5
 Frecuencias absolutas esperadas para la prueba Chi-cuadrada.
 
 ```{r}
+
 prueba$expected  
 
 # fij = fi./No. column
+
 ```
  
  
