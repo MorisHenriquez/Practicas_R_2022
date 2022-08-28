@@ -187,7 +187,7 @@ Prueba de igualdad de medias por descomposición de la varianza en dos fuentes d
 # aov.Baterias <- aov(values~ind, data=Baterias)
 ```
 
-$$ values\backsim ind relaciona los valores muestrales con los respectivos grupos$$ 
+$$ values\ \backsim\ ind\ relaciona\ los\ valores\ muestrales\ con\ los\ respectivos\ grupos$$ 
 
 
 ```{r}
