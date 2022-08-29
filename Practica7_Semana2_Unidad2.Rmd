@@ -1,4 +1,24 @@
 ---
+documentclass: article
+header-includes:
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{graphicx}
+  - \usepackage[Lenny]{fncychap}
+  - \usepackage[labelfont=bf]{caption}
+  - \usepackage{longtable}
+  - \usepackage{float}
+  - \usepackage{fancyhdr}
+  - \usepackage{fancyheadings}
+  - \usepackage{geometry}
+  - \pagestyle{fancy}
+  - \lhead{\scriptsize \textbf{Practicas en R 2022}}
+  - \chead{\textbf{Practica 7}} 
+  - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
+  - \rfoot{}
+  - \setlength{\headheight}{60.50192pt}
+  - \renewcommand{\headrulewidth}{1pt}
+  - \renewcommand{\footrulewidth}{1pt}
+  - \geometry{left=2.5cm, right=2.5cm, bottom=2.5cm, top=3.5cm}
 title: "Practica7_Semana2_Unidad2_2022"
 author: "Moris Henriquez"
 date: '2022-08-13'

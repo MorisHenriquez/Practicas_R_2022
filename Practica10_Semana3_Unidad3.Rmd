@@ -1,4 +1,24 @@
 ---
+documentclass: article
+header-includes:
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{graphicx}
+  - \usepackage[Lenny]{fncychap}
+  - \usepackage[labelfont=bf]{caption}
+  - \usepackage{longtable}
+  - \usepackage{float}
+  - \usepackage{fancyhdr}
+  - \usepackage{fancyheadings}
+  - \usepackage{geometry}
+  - \pagestyle{fancy}
+  - \lhead{\scriptsize \textbf{Practicas en R 2022}}
+  - \chead{\textbf{Practica 10}}
+  - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
+  - \rfoot{}
+  - \setlength{\headheight}{60.50192pt}
+  - \renewcommand{\headrulewidth}{1pt}
+  - \renewcommand{\footrulewidth}{1pt}
+  - \geometry{left=2.5cm, right=2.5cm, bottom=2.5cm, top=3.5cm}
 title: "Practica10_Semana3_Unidad3_2022"
 author: "Moris Henriquez"
 date: '2022-08-18'
@@ -161,7 +181,7 @@ S
 
 
 $$ H_{0} : \mu_{A} = \mu_{B} = \mu_{C}$$ , no existe diferencias entre los tres procesos.
-$$H_{1} : \mu_{i} \neq \mu_{j}, por lo menos un par  i \neq j$$, de procesos difieren en la duración de las baterías.
+$$ H_{1} : \mu_{i} \neq \mu_{j}\ por\ lo\ menos\ un\ par\  i \neq j$$, de procesos difieren en la duración de las baterías.
 
 
 Concatena los tres vectores dentro de un vector simple, junto con un vector factor indicador de la categoría o tratamiento (A, B, C) que origina cada observación. El resultado es un data.frame que tiene como componentes los dos vectores anteriores.
@@ -198,7 +218,7 @@ $$ values\ \backsim\ ind\ relaciona\ los\ valores\ muestrales\ con\ los\ respect
 Note que es necesario la instrucción anterior para poder visualizar la tabla ANOVA.
 
 
-Decisión: ya que $$\alpha = 0.05 > p-value obtenido, entonces se rechaza H_{0}$$
+Decisión: ya que $$\alpha = 0.05 > p-value\ obtenido\ entonces\ se\ rechaza\ H_{0}$$
 
 Prueba de igualdad de medias en un diseño de una vía (o unifactorial) asumiendo que las varianzas de los grupos son iguales
 
