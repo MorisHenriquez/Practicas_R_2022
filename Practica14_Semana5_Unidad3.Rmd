@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 14}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -265,7 +267,8 @@ y
 Generamos el gráfico de distribución:
 
 ```{r}
-plot(x, y, xlab="x", ylab="Función de probalidad", main="Distribución de Poisson: lambda = 6", type="h") 
+plot(x, y, xlab="x", ylab="Función de probalidad", main="Distribución de Poisson: lambda
+= 6", type="h") 
 
 # Unimos los puntos a las lineas:
 
@@ -350,7 +353,9 @@ Tabla <- data.frame(Probabilidad=dgeom(x, prob=p))
 
 #Nombrando las filas de la distribución de frecuencias:
   
-rownames(Tabla) <- c("Venta en el primer intento", "Venta en el segundo intento", "Venta en el tercer intento", "Venta en el cuarto intento", "Venta en el quinto intento", "Venta en el sexto intento")
+rownames(Tabla) <- c("Venta en el primer intento", "Venta en el segundo intento", "Venta
+en el tercer intento", "Venta en el cuarto intento", "Venta en el quinto intento", "Venta
+en el sexto intento")
 
 Tabla 
 ```
@@ -463,13 +468,15 @@ x
 Realizamos el Histograma para la muestra aleatoria de tamaño 100.
 
 ```{r}
-hist(x, main=expression(paste("X ~ Poisson( ", lambda, " = 6 )")), xlab="X = Número de eventos a una tasa constante", ylab="masa de probabilidad", probability=TRUE, col="blue")
+hist(x, main=expression(paste("X ~ Poisson( ", lambda, " = 6 )")), xlab="X = Número de
+eventos a una tasa constante", ylab="masa de probabilidad", probability=TRUE, col="blue")
 ```
 
 Ahora realizamos la Graficar de la función de probabilidad teórica, use la función points()
 
 ```{r}
-hist(x, main=expression(paste("X ~ Poisson( ", lambda, " = 6 )")), xlab="X = Número de eventos a una tasa constante", ylab="masa de probabilidad", probability=TRUE, col="blue")
+hist(x, main=expression(paste("X ~ Poisson( ", lambda, " = 6 )")), xlab="X = Número de
+eventos a una tasa constante", ylab="masa de probabilidad", probability=TRUE, col="blue")
 
 xvals=0:n 
 

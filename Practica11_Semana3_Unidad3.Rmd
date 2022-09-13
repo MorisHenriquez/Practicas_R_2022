@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 11}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -84,7 +86,8 @@ fix(Sistema)
 
 
 ```{r}
-write.table(Sistema, file="Sistema.txt", append=FALSE, quote=TRUE, sep=" ", na="NA", col.names = TRUE)
+write.table(Sistema, file="Sistema.txt", append=FALSE, quote=TRUE, sep=" ", na="NA",
+col.names = TRUE)
 ```
 
 
@@ -137,7 +140,9 @@ cor(Sistema, use = "all.obs", method="pearson")
 ### 10º) Elabora un gráfico de dispersión para analizar alguna relación entre las variables.
 ```{r}
 
-plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col = "blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios", ylab="Tiempo de ejecución")
+plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col =
+"blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios",
+ylab="Tiempo de ejecución")
 
 ```
 
@@ -150,7 +155,9 @@ Sin cerrar la ventana del gráfico anterior, ejecuta la siguiente instrucción:
 identify(Usuarios, Tiempo, n=1)
 
 ```{r}
-plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col = "blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios", ylab="Tiempo de ejecución")
+plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col =
+"blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios",
+ylab="Tiempo de ejecución")
 
 identify(Usuarios, Tiempo, n=1)
 ```
@@ -175,6 +182,9 @@ summary(reg.Y.X)
 ```
 
 Note que es necesaria la instrucción anterior para poder visualizar los resultados más
+
+
+
 sobresalientes de la regresión encontrada. Nos muestra la estimación de los parámetros junto con su significancia, el coeficiente de determinación.
 
 
@@ -183,7 +193,9 @@ sobresalientes de la regresión encontrada. Nos muestra la estimación de los pa
 Para agregar la recta de regresion a la grafica de dispersion le agregamos el coedigo abline(reg.Y.X.)
 
 ```{r}
-plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col = "blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios", ylab="Tiempo de ejecución")
+plot(Usuarios, Tiempo, xlim= c(5, 35), ylim= c(0.0, 2.5), type = "p", pch=1, col =
+"blue", main = "Gráfico de dispersión (Usuarios, Tiempo)", xlab="Número de usuarios",
+ylab="Tiempo de ejecución")
 
 abline (reg.Y.X)
 ```

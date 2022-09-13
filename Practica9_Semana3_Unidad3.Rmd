@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 9}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -136,7 +138,8 @@ Gráficos de barras para tabla de contingencia.
 Barras apiladas
 
 ```{r}
-barplot(t(tablaCont), main="Gráfico de barras (Estado, Ocupación)", xlab="Estado civil", ylab="Ocupación", legend.text=TRUE)
+barplot(t(tablaCont), main="Gráfico de barras (Estado, Ocupación)", xlab="Estado
+civil",ylab="Ocupación", legend.text=TRUE)
 ```
  
 Note que t(tablaCont) indica que las barras representan el Estado civil de los encuestados y que éstas se subdividen en cada una de las diferentes ocupaciones consideradas.
@@ -213,7 +216,8 @@ propColum
 Total por columna se indica en 2
 
 ```{r}
-barplot(propColum, main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación\n", ylab="Estado civil", beside=TRUE, legend.text=TRUE)
+barplot(propColum, main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación\n",
+ylab="Estado civil", beside=TRUE, legend.text=TRUE)
 ```
 
 ### 9º) Otra forma de elaborar los gráficos de barras para el vector bidimensional categórico.
@@ -221,11 +225,15 @@ barplot(propColum, main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupaci
 Gráfico de barras no apiladas y colocación de leyenda.
 
 ```{r}
-barplot(table(Ocupacion, Estado), main="Gráfico de barras (Estado, Ocupación)", xlab = "Estado civil", ylab="Ocupación", beside=TRUE, legend.text=T) 
+barplot(table(Ocupacion, Estado), main="Gráfico de barras (Estado, Ocupación)", xlab =
+"Estado civil", ylab="Ocupación", beside=TRUE, legend.text=T) 
 
-barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab = "Ocupación", ylab="Estado civil", beside=TRUE, legend.text=TRUE) 
+barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab =
+"Ocupación", ylab="Estado civil", beside=TRUE, legend.text=TRUE) 
 
-barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)", xlab="Ocupación", ylab="Estado civil", beside=TRUE, legend.text=c("menor que 2", "2-3", "mayor que 3"))
+barplot(table(Estado, Ocupacion), main="Gráfico de barras (Ocupación, Estado)",
+xlab="Ocupación", ylab="Estado civil", beside=TRUE, legend.text=c("menor que 2", "2-3",
+"mayor que 3"))
 
 ```
 

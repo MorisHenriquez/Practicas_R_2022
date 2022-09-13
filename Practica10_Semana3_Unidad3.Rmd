@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 10}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -121,7 +123,8 @@ search()
 ### 9º) Dibuja un gráfico horizontal de puntos para los tres procesos.
 
 ```{r}
-stripchart(Baterias, main="Gráfico de puntos para los tres procesos", method = "stack", vertical = FALSE, col="blue", pch=1, xlab="Duración (semanas)", ylab="Proceso")
+stripchart(Baterias, main="Gráfico de puntos para los tres procesos", method = "stack",
+vertical = FALSE, col="blue", pch=1, xlab="Duración (semanas)", ylab="Proceso")
 
 ```
 
@@ -142,14 +145,17 @@ Horizontal.
 
 
 ```{r}
-boxplot(Baterias, width=NULL, varwidth=TRUE, names, add= FALSE, horizontal = TRUE, main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"), xlab = "Duración (semanas)", ylab="Proceso")
+boxplot(Baterias, width=NULL, varwidth=TRUE, names, add= FALSE, horizontal = TRUE,
+main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"),
+xlab = "Duración (semanas)", ylab="Proceso")
 ```
 
 Vertical.
 
 ```{r}
 boxplot(Baterias, width=NULL, varwidth=TRUE, names, add= FALSE, horizontal = FALSE,
-main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"), xlab = "Duración (semanas)", ylab="Proceso")
+main="Gráfico de caja por proceso", border=par("fg"), col=c("yellow", "cyan", "red"),  
+xlab = "Duración (semanas)", ylab="Proceso")
 ```
 
 
@@ -377,15 +383,19 @@ propCol
 
 Gráfico de barras apiladas con la frecuencia de Cantidad como altura
 
-```{r}
-barplot(table(Estudia$Cantidad, Estudia$Fuma), beside = FALSE, horizontal=FALSE, main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", legend.text =T, xlab="Fuma", ylab="Cantidad de horas-estudio")
+```{r, Fig=TRUE}
+barplot(table(Estudia$Cantidad, Estudia$Fuma), beside = FALSE, horizontal=FALSE,
+main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", legend.text =T,
+xlab="Fuma", ylab="Cantidad de horas-estudio")
 ```
 
 
 Gráfico de barras apiladas con la frecuencia de Fuma como altura
 
 ```{r}
-barplot(table(Estudia$Fuma, Estudia$Cantidad), beside = FALSE, horizontal=FALSE,main="Gráfico de barras (Cantidad de horas de estudio,Fuma)", legend.text =T, xlab="Cantidad de horas-estudio", ylab="Fuma")
+barplot(table(Estudia$Fuma, Estudia$Cantidad), beside = FALSE,
+horizontal=FALSE,main="Gráfico de barras (Cantidad de horas de estudio,Fuma)",
+legend.text =T, xlab="Cantidad de horas-estudio", ylab="Fuma")
 ```
 
 
@@ -398,9 +408,13 @@ Fuma=factor(Estudia$Fuma)
 
 Fuma
 
-barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE, legend.text=T)
+barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de
+horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE,
+legend.text=T)
 
-barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE, legend.text=c("menor que 5", "5-10", "mayor que 10"))
+barplot(table(Estudia$Cantidad, Estudia$Fuma), main="Gráfico de barras (Fuma, Cantidad de
+horas de estudio)", xlab="Fuma", ylab="Cantidad de horas-estudio", beside=TRUE,
+legend.text=c("menor que 5", "5-10", "mayor que 10"))
 ```
 
 ### 12º) Realiza la prueba o contraste Chi-cuadrado para las probabilidades dadas

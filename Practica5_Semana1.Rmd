@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 5}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -268,7 +270,7 @@ Seno(x)
 
 Realizamos los ejercicios solicitados anteriormente, pero primero guardaremos la funcion y luego la mandaremos a llamar:
 
-```{r}
+```{r, fig=TRUE}
 save(sin, file= "seno.RData")
 load("seno.RData") 
 x<- seq(-pi, pi, len=100)

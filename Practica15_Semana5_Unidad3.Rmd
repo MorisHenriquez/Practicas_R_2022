@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 15}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -280,13 +282,15 @@ x
 Ahora realizamos el Histograma para la nuestra aleatoria de tamaño 100.
 
 ```{r}
-hist(x, main="X ~ Uniforme(min=-2, max=4", xlab="X", ylab="densidad de probabilidad", probability=TRUE, col="green") 
+hist(x, main="X ~ Uniforme(min=-2, max=4", xlab="X", ylab="densidad de probabilidad",
+probability=TRUE, col="green") 
 ```
 
 Ahora Graficaremos la función de densidad, use la función curve() para variable continua.
 
 ```{r}
-hist(x, main="X ~ Uniforme(min=-2, max=4", xlab="X", ylab="densidad de probabilidad", probability=TRUE, col="green") 
+hist(x, main="X ~ Uniforme(min=-2, max=4", xlab="X", ylab="densidad de probabilidad",
+probability=TRUE, col="green") 
 
 curve(dunif(x, min, max), col = "blue", add = TRUE)
 
@@ -311,7 +315,9 @@ Podemos obtener un histograma usando la función hist()
 Lo realizamos de la siguiente manera:
 
 ```{r}
-hist(x.norm, breaks = "Sturges", freq = TRUE, probability = FALSE, include.lowest = TRUE, right = TRUE, density = NULL, angle = 45, col = "steelblue1", border = NULL, main = "Histograma de datos observados", axes = TRUE, plot = TRUE, labels = FALSE) 
+hist(x.norm, breaks = "Sturges", freq = TRUE, probability = FALSE, include.lowest = TRUE,
+right = TRUE, density = NULL, angle = 45, col = "steelblue1", border = NULL, main =
+"Histograma de datos observados", axes = TRUE, plot = TRUE, labels = FALSE) 
 
 ```
 
@@ -355,13 +361,15 @@ x
 Realizamos el Histograma para la muestra aleatoria de tamaño 100.
 
 ```{r}
-hist(x,main=expression(paste("X ~ N(", mu, " = 4.5, ", sigma, " = 0.75)")), xlab="X", ylab="densidad de probabilidad", probability=TRUE, col=gray(0.9)) 
+hist(x,main=expression(paste("X ~ N(", mu, " = 4.5, ", sigma, " = 0.75)")), xlab="X",
+ylab="densidad de probabilidad", probability=TRUE, col=gray(0.9)) 
 ```
 
 Ahora realizamos el Grafico de la función de densidad teórica, usando la función curve() 
 
 ```{r}
-hist(x,main=expression(paste("X ~ N(", mu, " = 4.5, ", sigma, " = 0.75)")), xlab="X", ylab="densidad de probabilidad", probability=TRUE, col=gray(0.9)) 
+hist(x,main=expression(paste("X ~ N(", mu, " = 4.5, ", sigma, " = 0.75)")), xlab="X",
+ylab="densidad de probabilidad", probability=TRUE, col=gray(0.9)) 
 
 curve(dnorm(x, media, desviacion), col="red", lwd=2, add=TRUE) 
 ```
@@ -394,13 +402,15 @@ x
 Realizamos el Histograma para la nuestra aleatoria de tamaño 100:
 
 ```{r}
-hist(x, main="X ~ Exponencial( media = 2500 )", xlab="X", ylab="densidad de probabilidad", probability=TRUE, col="green") 
+hist(x, main="X ~ Exponencial( media = 2500 )", xlab="X", ylab="densidad de
+probabilidad", probability=TRUE, col="green") 
 ```
 
 Graficaremos la función de densidad, usando la función curve()
 
 ```{r}
-hist(x, main="X ~ Exponencial( media = 2500 )", xlab="X", ylab="densidad de probabilidad", probability=TRUE, col="green") 
+hist(x, main="X ~ Exponencial( media = 2500 )", xlab="X", ylab="densidad de
+probabilidad", probability=TRUE, col="green") 
 
 curve(dexp(x, razon), col="blue", lwd=2, add=TRUE) 
 ```

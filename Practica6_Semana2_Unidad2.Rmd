@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 6}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -188,14 +190,15 @@ Note que por tratarse de variables cualitativas únicamente muestra el número d
 9°) Realizar un gráfico de barras.
 
 Para las frecuencias absolutas:
-```{r}
-barplot(frec, main ="Grafico de barras", xlab = "Consumo", col = c("yellow", "white", "red"), sub = "Agosto-2012")
+```{r, fig=TRUE}
+barplot(frec, main ="Grafico de barras", xlab = "Consumo", col = c("yellow", 
+"white","red"), sub = "Agosto-2012")
 ```
 
 
 Para las frecuencias relativas:
 
-```{r}
+```{r, fig=TRUE}
 barplot(pro, main="Gráfico de barras", xlab=" Consumo\n", col=c("yellow", "white",
 "red"), sub="Agosto-2012")
 ```

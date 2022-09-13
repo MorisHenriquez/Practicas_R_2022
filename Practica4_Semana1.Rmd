@@ -12,7 +12,9 @@ header-includes:
   - \usepackage{geometry}
   - \pagestyle{fancy}
   - \lhead{\scriptsize \textbf{Practicas en R 2022}}
-  - \chead{\textbf{Practica 4}}
+  - \chead{{\textbf UNIVERSIDAD DE EL SALVADOR\par}
+      {\textbf FACULTAD MULDISCIPLINARIA DE OCCIDENTE\par}
+      {\textbf DEPARTAMENTO DE MATEM\'ATICAS\par}}
   - \rhead{\includegraphics[width=2cm, height=2cm]{Ues_Logo.jpg}}
   - \rfoot{}
   - \setlength{\headheight}{60.50192pt}
@@ -307,10 +309,6 @@ head(spss)
 Al vizualizar la lecturar del documento spss determinamos dejarlo como comentario debido a la cantidad de datos establecido por ese archivo.
 
 • Realizar los análisis o cálculos correspondientes. 
-
-# IMPORTACION Y EXPORTACION DE DATOS EN R (R-COMMANDER)
-
-## USO DE INTERFAZ GRAFICA R-COMMANDER.
 
 
 
